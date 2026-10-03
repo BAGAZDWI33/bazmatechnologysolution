@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bazma.Tech Tegal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --bg: #04080F;
+      --bg2: #080E1A;
+      --bg3: #0D1526;
+      --accent: #0EA5E9;
+      --accent2: #38BDF8;
+      --gold: #F59E0B;
+      --text: #F0F6FF;
+      --muted: #8BA3C1;
+      --border: rgba(14, 165, 233, 0.18);
+      --card: rgba(13, 21, 38, 0.9);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden
+    }
+
+    /* Grid Background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0
+    }
+
+    section,
+    nav,
+    footer {
+      position: relative;
+      z-index: 1
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(4, 8, 15, 0.85)
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--text)
+    }
+
+    .logo span {
+      color: var(--accent)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover {
+      color: var(--accent2)
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.45rem 1.2rem;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem 4rem
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 12px;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7)
+      }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 820px;
+      margin-bottom: 1.5rem
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent)
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      font-weight: 300
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 14px;
+      transition: opacity 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--accent2);
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(14, 165, 233, 0.07)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 4rem;
+      margin-top: 5rem;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .stat {
+      text-align: center
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text)
+    }
+
+    .stat-num span {
+      color: var(--accent)
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 3rem
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .section-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem
+    }
+
+    h2 em {
+      font-style: normal;
+      color: var(--accent)
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 580px;
+      line-height: 1.8
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 1.5rem 0
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.2s;
+      cursor: default;
+      position: relative;
+      overflow: hidden
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s
+    }
+
+    .service-card:hover {
+      border-color: rgba(14, 165, 233, 0.45);
+      transform: translateY(-3px)
+    }
+
+    .service-card:hover::before {
+      opacity: 1
+    }
+
+    .svc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 1.2rem
+    }
+
+    .svc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text)
+    }
+
+    .svc-desc {
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.7
+    }
+
+    .svc-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 11px;
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent2);
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem
+    }
+
+    .about-visual {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem
+    }
+
+    .about-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start
+    }
+
+    .about-item:last-child {
+      margin-bottom: 0
+    }
+
+    .about-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 8px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px
+    }
+
+    .about-item-title {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 3px;
+      color: var(--text)
+    }
+
+    .about-item-desc {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* Why Us */
+    .whyus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem
+    }
+
+    .why-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start
+    }
+
+    .why-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(14, 165, 233, 0.2);
+      line-height: 1;
+      min-width: 36px
+    }
+
+    .why-title {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: var(--text)
+    }
+
+    .why-text {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem
+    }
+
+    .team-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s
+    }
+
+    .team-card:hover {
+      border-color: rgba(14, 165, 233, 0.4)
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, #0369A1, #0EA5E9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .team-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 3px
+    }
+
+    .team-role {
+      color: var(--accent2);
+      font-size: 12px;
+      letter-spacing: 0.05em
+    }
+
+    .team-desc {
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 0.75rem;
+      line-height: 1.6
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem
+    }
+
+    .quote {
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      font-family: Georgia, serif
+    }
+
+    .testi-text {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      font-style: italic
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .testi-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(14, 165, 233, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent2)
+    }
+
+    .testi-name {
+      font-weight: 500;
+      font-size: 13px
+    }
+
+    .testi-inst {
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+      position: relative
+    }
+
+    .price-card.featured {
+      border-color: var(--accent)
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.07em;
+      white-space: nowrap
+    }
+
+    .price-tier {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      font-weight: 600;
+      margin-bottom: 1rem
+    }
+
+    .price-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem
+    }
+
+    .price-period {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 1.5rem
+    }
+
+    .price-items {
+      list-style: none
+    }
+
+    .price-items li {
+      color: var(--muted);
+      font-size: 13.5px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start
+    }
+
+    .price-items li::before {
+      content: '✓';
+      color: var(--accent);
+      font-size: 12px;
+      margin-top: 3px;
+      min-width: 14px
+    }
+
+    .price-btn {
+      display: block;
+      text-align: center;
+      margin-top: 1.75rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      width: 100%
+    }
+
+    .price-btn-out {
+      border: 1px solid var(--border);
+      color: var(--accent2);
+      background: transparent
+    }
+
+    .price-btn-out:hover {
+      border-color: var(--accent)
+    }
+
+    .price-btn-fill {
+      background: var(--accent);
+      color: #fff
+    }
+
+    .price-btn-fill:hover {
+      opacity: 0.85
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 10px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px
+    }
+
+    .contact-val {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500
+    }
+
+    .contact-form {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 0.65rem 1rem;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent)
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(139, 163, 193, 0.5)
+    }
+
+    .form-group select option {
+      background: #0D1526;
+      color: var(--text)
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: opacity 0.2s
+    }
+
+    .submit-btn:hover {
+      opacity: 0.85
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text)
+    }
+
+    .footer-logo span {
+      color: var(--accent)
+    }
+
+    /* Social Icons */
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--accent2);
+      transition: border-color 0.2s;
+      text-decoration: none
+    }
+
+    .social-icon:hover {
+      border-color: var(--accent)
+    }
+
+    /* Responsive */
+    @media(max-width:900px) {
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:720px) {
+      nav {
+        padding: 1rem 1.5rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hero-stats {
+        gap: 2.5rem
+      }
+
+      .section {
+        padding: 4rem 1.5rem
+      }
+
+      h1 {
+        font-size: 2rem
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: center
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-bg"></div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">BAZMA<span>.</span>TECH</div>
+    <ul class="nav-links">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#tim">Tim</a></li>
+      <li><a href="#konsultasi">Konsultasi</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <a href="#kontak" class="nav-cta">Hubungi Kami</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Inovasi Teknologi
+    </div>
+    <h1>Solusi Teknologi <em>Terpadu</em> untuk Bisnis &amp; Akademik Anda</h1>
+    <p class="hero-sub">
+      Bazma Technology Solution menghadirkan layanan gateway sistem IPL, pengembangan website, IoT, analisa data, dan
+      konsultasi jurnal skripsi yang komprehensif di era digital.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('layanan').scrollIntoView({behavior:'smooth'})">Lihat
+        Layanan Kami</button>
+      <button class="btn-outline"
+        onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Konsultasi Gratis</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">Klien Aktif</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Tahun Pengalaman</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Kepuasan Klien</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-label">Proyek Selesai</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section class="section" id="layanan">
+    <div class="section-inner">
+      <div class="section-tag">Layanan Kami</div>
+      <h2>Teknologi <em>Lengkap</em>, Solusi Nyata</h2>
+      <div class="divider"></div>
+      <p class="lead">Dari infrastruktur digital hingga pembimbingan akademik — kami hadir sebagai mitra teknologi
+        tepercaya Anda.</p>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="svc-icon">🌐</div>
+          <div class="svc-title">Gateway Sistem IPL</div>
+          <div class="svc-desc">Pengembangan sistem gateway untuk Iuran Pengelolaan Lingkungan (IPL) berbasis digital.
+            Integrasi pembayaran, notifikasi otomatis, dashboard manajemen, dan laporan real-time untuk perumahan &amp;
+            properti.</div>
+          <span class="svc-tag">Sistem Pembayaran</span>
+        </div>
+
+        <div class="service-card">
+          <div class="svc-icon">💻</div>
+          <div class="svc-title">Pembuatan Website</div>
+          <div class="svc-desc">Desain dan pengembangan website profesional: company profile, e-commerce, portal berita,
+            sistem informasi, dan web app custom. Responsif, cepat, dan SEO-friendly untuk semua kebutuhan bisnis.</div>
+          <span class="svc-tag">Web Development</span>
+        </div>
+
+        <div class="service-card">
+          <div class="svc-icon">📡</div>
+          <div class="svc-title">Sistem Internet of Things</div>
+          <div class="svc-desc">Implementasi solusi IoT end-to-end: sensor monitoring, smart home, otomasi industri, dan
+            sistem kendali jarak jauh. Koneksi perangkat ke cloud dengan dashboard monitoring real-time.</div>
+          <span class="svc-tag">IoT &amp; Otomasi</span>
+        </div>
+
+        <div class="service-card">
+          <div class="svc-icon">📊</div>
+          <div class="svc-title">Analisa &amp; Visualisasi Data</div>
+          <div class="svc-desc">Pengolahan big data, business intelligence, dan visualisasi data interaktif. Bantu
+            bisnis Anda mengambil keputusan berbasis data akurat dengan laporan yang mudah dipahami.</div>
+          <span class="svc-tag">Data Analytics</span>
+        </div>
+
+        <div class="service-card">
+          <div class="svc-icon">🎓</div>
+          <div class="svc-title">Bimbingan Jurnal &amp; Skripsi</div>
+          <div class="svc-desc">Konsultasi penyusunan skripsi, tesis, dan publikasi jurnal ilmiah. Pendampingan
+            metodologi penelitian, analisa statistik SPSS/R, dan bimbingan hingga lulus sidang maupun terbit di jurnal
+            terakreditasi.</div>
+          <span class="svc-tag">Akademik &amp; Riset</span>
+        </div>
+
+        <div class="service-card">
+          <div class="svc-icon">🤝</div>
+          <div class="svc-title">Konsultan Teknologi Aktif</div>
+          <div class="svc-desc">Layanan konsultasi teknologi berkelanjutan: audit sistem IT, perencanaan digital
+            transformation, konsultasi keamanan siber, dan pendampingan implementasi teknologi untuk perusahaan &amp;
+            institusi pendidikan.</div>
+          <span class="svc-tag">IT Consulting</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section class="section" id="tentang" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="section-tag">Tentang Kami</div>
+      <h2>Bazma Technology <em>Solution</em></h2>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div>
+          <p class="lead" style="margin-bottom:1.5rem">Didirikan di Kota Tegal, Jawa Tengah, Bazma Technology Solution
+            adalah perusahaan teknologi yang berfokus pada pengembangan sistem digital inovatif dan pemberdayaan sumber
+            daya akademik.</p>
+          <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:1.2rem">Kami percaya bahwa teknologi
+            yang tepat guna mampu mentransformasi bisnis lokal dan mengangkat kualitas riset akademik Indonesia. Dengan
+            tim yang berpengalaman dan passion yang tinggi, kami siap menjadi mitra digital terbaik Anda.</p>
+          <p style="color:var(--muted);font-size:14px;line-height:1.8">Berlokasi strategis di Harjosari Lor Tegal Jawa
+            Tengah, kami melayani klien
+            dari seluruh Indonesia secara daring maupun tatap muka langsung.</p>
+        </div>
+        <div class="about-visual">
+          <div class="about-item">
+            <div class="about-icon">🎯</div>
+            <div>
+              <div class="about-item-title">Visi</div>
+              <div class="about-item-desc">Menjadi perusahaan teknologi terdepan di Jawa Tengah yang mendorong
+                transformasi digital bisnis dan kemajuan akademik Indonesia.</div>
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-icon">🚀</div>
+            <div>
+              <div class="about-item-title">Misi</div>
+              <div class="about-item-desc">Menghadirkan solusi teknologi inovatif, terjangkau, dan berdampak nyata bagi
+                pelaku usaha, instansi, serta sivitas akademika.</div>
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-icon">💡</div>
+            <div>
+              <div class="about-item-title">Nilai Inti</div>
+              <div class="about-item-desc">Integritas, inovasi, kolaborasi, dan komitmen terhadap kualitas dalam setiap
+                proyek dan layanan yang kami berikan.</div>
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-icon">📍</div>
+            <div>
+              <div class="about-item-title">Lokasi</div>
+              <div class="about-item-desc">Harjosari Lor RT 01 RW 01 Adiwerna, Kabupaten Tegal Jawa Tengah — melayani
+                seluruh Indonesia.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEUNGGULAN -->
+  <section class="section" id="keunggulan">
+    <div class="section-inner">
+      <div class="section-tag">Keunggulan</div>
+      <h2>Mengapa Pilih <em>Kami?</em></h2>
+      <div class="divider"></div>
+      <div class="whyus-grid">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <div>
+            <div class="why-title">Tim Berpengalaman</div>
+            <div class="why-text">Didukung developer, analis data, dan konsultan akademik yang berpengalaman lebih dari
+              5 tahun di bidangnya.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <div>
+            <div class="why-title">Solusi Custom</div>
+            <div class="why-text">Setiap proyek dirancang sesuai kebutuhan spesifik klien, bukan template generik yang
+              tidak optimal.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <div>
+            <div class="why-title">Harga Kompetitif</div>
+            <div class="why-text">Kualitas profesional dengan harga yang bersahabat untuk UMKM, institusi, dan mahasiswa
+              Indonesia.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">04</div>
+          <div>
+            <div class="why-title">Pendampingan Penuh</div>
+            <div class="why-text">Support aktif selama dan pasca proyek. Kami tidak meninggalkan klien setelah serah
+              terima.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">05</div>
+          <div>
+            <div class="why-title">Teknologi Mutakhir</div>
+            <div class="why-text">Menggunakan stack teknologi modern: cloud, AI-ready architecture, microservices, dan
+              IoT platform terkini.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">06</div>
+          <div>
+            <div class="why-title">Konsultan Aktif</div>
+            <div class="why-text">Model bisnis konsultan aktif berarti kami selalu hadir, responsif, dan proaktif dalam
+              memberikan rekomendasi terbaik.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIM -->
+  <section class="section" id="tim" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="section-tag">Tim Profesional</div>
+      <h2>Diperkuat Ahli <em>Terbaik</em></h2>
+      <div class="divider"></div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="avatar">BT</div>
+          <div class="team-name">Direktur Utama</div>
+          <div class="team-role">CEO &amp; Founder</div>
+          <div class="team-desc">Memimpin visi perusahaan dengan pengalaman luas di industri teknologi dan konsultasi
+            digital Jawa Tengah.</div>
+        </div>
+        <div class="team-card">
+          <div class="avatar" style="background:linear-gradient(135deg,#0D9488,#14B8A6)">DT</div>
+          <div class="team-name">Lead Developer</div>
+          <div class="team-role">Full Stack &amp; IoT Engineer</div>
+          <div class="team-desc">Spesialis pengembangan web, sistem gateway, dan integrasi IoT dengan pengalaman 6+
+            tahun di industri.</div>
+        </div>
+        <div class="team-card">
+          <div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#A78BFA)">AD</div>
+          <div class="team-name">Data Analyst Lead</div>
+          <div class="team-role">Analytics &amp; Visualization</div>
+          <div class="team-desc">Ahli analisa data, machine learning, dan business intelligence untuk transformasi data
+            menjadi keputusan strategis.</div>
+        </div>
+        <div class="team-card">
+          <div class="avatar" style="background:linear-gradient(135deg,#B45309,#F59E0B)">AK</div>
+          <div class="team-name">Konsultan Akademik</div>
+          <div class="team-role">Research &amp; Academic Advisor</div>
+          <div class="team-desc">Doktor bidang teknologi informasi, berpengalaman membimbing ratusan mahasiswa S1 dan S2
+            hingga lulus sidang.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAKET LAYANAN -->
+  <section class="section" id="konsultasi">
+    <div class="section-inner">
+      <div class="section-tag">Paket Layanan</div>
+      <h2>Pilih Paket <em>Sesuai Kebutuhan</em></h2>
+      <div class="divider"></div>
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount">Hubungi Kami</div>
+          <div class="price-period">untuk estimasi harga proyek</div>
+          <ul class="price-items">
+            <li>Website Company Profile (5 halaman)</li>
+            <li>Desain responsif mobile-first</li>
+            <li>Hosting &amp; domain 1 tahun</li>
+            <li>1x revisi desain</li>
+            <li>Support 1 bulan</li>
+          </ul>
+          <button class="price-btn price-btn-out"
+            onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Konsultasi Sekarang</button>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-badge">POPULER</div>
+          <div class="price-tier">Professional</div>
+          <div class="price-amount">Hubungi Kami</div>
+          <div class="price-period">paket terlengkap &amp; terpopuler</div>
+          <ul class="price-items">
+            <li>Sistem Gateway IPL Lengkap</li>
+            <li>Website + Dashboard Admin</li>
+            <li>Integrasi Payment Gateway</li>
+            <li>Analisa data &amp; laporan otomatis</li>
+            <li>Notifikasi WhatsApp/Email</li>
+            <li>Training tim &amp; support 6 bulan</li>
+          </ul>
+          <button class="price-btn price-btn-fill"
+            onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Dapatkan Penawaran</button>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Akademik</div>
+          <div class="price-amount">Terjangkau</div>
+          <div class="price-period">untuk mahasiswa &amp; peneliti</div>
+          <ul class="price-items">
+            <li>Bimbingan skripsi end-to-end</li>
+            <li>Analisa statistik (SPSS/R/Python)</li>
+            <li>Konsultasi metodologi penelitian</li>
+            <li>Pendampingan publikasi jurnal</li>
+            <li>Review &amp; proofreading karya ilmiah</li>
+            <li>Sesi konsultasi via Zoom/tatap muka</li>
+          </ul>
+          <button class="price-btn price-btn-out"
+            onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Mulai Bimbingan</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="section-tag">Testimoni</div>
+      <h2>Kata Klien &amp; <em>Mitra Kami</em></h2>
+      <div class="divider"></div>
+      <div class="testimonial-grid">
+
+        <div class="testi-card">
+          <div class="quote">"</div>
+          <div class="testi-text">Sistem IPL yang dibuat Bazma sangat membantu pengelolaan iuran warga kami. Pembayaran
+            kini bisa dilakukan online dan laporan otomatis. Luar biasa!</div>
+          <div class="testi-author">
+            <div class="testi-dot">RS</div>
+            <div>
+              <div class="testi-name">Pengurus Perumahan Tegal</div>
+              <div class="testi-inst">Klien Sistem Gateway IPL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="quote">"</div>
+          <div class="testi-text">Bimbingan skripsi dari tim Bazma sangat profesional. Dalam 3 bulan saya berhasil
+            sidang dengan nilai A. Analisa datanya akurat dan penjelasannya mudah dipahami.</div>
+          <div class="testi-author">
+            <div class="testi-dot">MA</div>
+            <div>
+              <div class="testi-name">Mahasiswa Universitas Pancasakti</div>
+              <div class="testi-inst">Klien Bimbingan Skripsi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="quote">"</div>
+          <div class="testi-text">Sistem IoT monitoring gudang yang mereka bangun benar-benar mengubah operasional kami.
+            Sekarang kami bisa memantau suhu dan kelembapan dari HP kapanpun.</div>
+          <div class="testi-author">
+            <div class="testi-dot">PT</div>
+            <div>
+              <div class="testi-name">Owner UMKM Pangan Tegal</div>
+              <div class="testi-inst">Klien Sistem IoT</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="section" id="kontak">
+    <div class="section-inner">
+      <div class="section-tag">Kontak &amp; Konsultasi</div>
+      <h2>Mulai Proyek <em>Bersama Kami</em></h2>
+      <div class="divider"></div>
+      <p class="lead">Konsultasi pertama gratis. Ceritakan kebutuhan Anda dan tim kami siap memberikan solusi terbaik.
+      </p>
+      <div class="contact-grid">
+
+        <!-- Info Kontak -->
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Alamat</div>
+              <div class="contact-val">Harjosari Lor RT 01 RW 01 Adiwerna Kabupaten Tegal, Jawa Tengah, Indonesia</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <div class="contact-label">WhatsApp / Telp</div>
+              <div class="contact-val">+62 823 2475 7905</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-val">bagasdwiprasetyo96@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Jam Operasional</div>
+              <div class="contact-val">Senin – Sabtu, 08.00 – 17.00 WIB</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div>
+              <div class="contact-label">Website</div>
+              <div class="contact-val">www.bazmatechsolution.com</div>
+            </div>
+          </div>
+          <div style="margin-top:0.5rem">
+            <div class="contact-label" style="margin-bottom:12px">Ikuti Kami</div>
+            <div style="display:flex;gap:10px">
+              <a href="#" class="social-icon">in</a>
+              <a href="#" class="social-icon">ig</a>
+              <a href="#" class="social-icon">wa</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form">
+          <div
+            style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1.5rem;color:var(--text)">
+            Kirim Pesan</div>
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" placeholder="Nama Anda" id="nama">
+          </div>
+          <div class="form-group">
+            <label>Email / WhatsApp</label>
+            <input type="text" placeholder="email atau nomor WA" id="kontak-val">
+          </div>
+          <div class="form-group">
+            <label>Layanan yang Diminati</label>
+            <select id="layanan-pilih">
+              <option value="">— Pilih Layanan —</option>
+              <option>Gateway Sistem IPL</option>
+              <option>Pembuatan Website</option>
+              <option>Sistem IoT</option>
+              <option>Analisa Data</option>
+              <option>Bimbingan Skripsi / Jurnal</option>
+              <option>Konsultasi IT Umum</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pesan / Deskripsi Kebutuhan</label>
+            <textarea rows="4" placeholder="Ceritakan kebutuhan proyek atau pertanyaan Anda..." id="pesan"></textarea>
+          </div>
+          <button class="submit-btn" onclick="kirimPesan()">Kirim Pesan →</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">BAZMA<span>.</span>TECHNOLOGY SOLUTION</div>
+      <div style="color:var(--muted);font-size:12px">© 2024 Bazma Technology Solution · Tegal, Jawa Tengah · All Rights
+        Reserved</div>
+      <div style="color:var(--muted);font-size:12px">🚀 Inovasi · Integritas · Solusi</div>
+    </div>
+  </footer>
+
+  <script>
+    function kirimPesan() {
+      const nama = document.getElementById('nama').value.trim();
+      const kontak = document.getElementById('kontak-val').value.trim();
+      const layanan = document.getElementById('layanan-pilih').value;
+      const pesan = document.getElementById('pesan').value.trim();
+
+      if (!nama || !kontak || !layanan || !pesan) {
+        alert('Mohon lengkapi semua field sebelum mengirim pesan.');
+        return;
+      }
+
+      alert('Terima kasih, ' + nama + '!\nTim Bazma Technology Solution akan segera menghubungi Anda. 🚀');
+
+      document.getElementById('nama').value = '';
+      document.getElementById('kontak-val').value = '';
+      document.getElementById('layanan-pilih').value = '';
+      document.getElementById('pesan').value = '';
+    }
+
+    // Smooth scroll untuk semua anchor link
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
